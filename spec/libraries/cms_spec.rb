@@ -20,8 +20,10 @@
 require 'spec_helper'
 
 describe 'sitecore_cms' do
+  include_context 'shared context'
+
   cached(:cms_run) do
-    ChefSpec::SoloRunner.converge('min_config::cms')
+    ChefSpec::SoloRunner.new(platform).converge('min_config::cms')
   end
 
   let(:sitecore_zip) do
@@ -42,7 +44,7 @@ describe 'sitecore_cms' do
   end
 
   cached(:advanced_run) do
-    ChefSpec::SoloRunner.converge('advanced_config::default')
+    ChefSpec::SoloRunner.new(platform).converge('advanced_config::default')
   end
 
   let(:bindings) do

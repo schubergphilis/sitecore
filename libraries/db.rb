@@ -125,7 +125,7 @@ class Chef
       include Sitecore::FilesystemHelper
       include Sitecore::MssqlHelper
 
-      DB_TYPES = ['core', 'master', 'web', 'analytics']
+      DB_TYPES = ['core', 'master', 'web', 'analytics'] unless const_defined?(:DB_TYPES)
 
       def load_current_resource
         r = new_resource

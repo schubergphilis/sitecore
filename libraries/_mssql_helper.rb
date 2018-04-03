@@ -61,7 +61,7 @@ EOH
     def create_login(host, uname, password)
       code = <<EOH
 [System.Reflection.Assembly]::LoadWithPartialName('Microsoft.SqlServer.Smo')
-$server = New-Object('Microsoft.SqlServer.Management.Smo.Server') #{host}
+$server = New-Object('Microsoft.SqlServer.Management.Smo.Server') '#{host}'
 $name = '#{uname}'
 $existingLogin = $server.Logins.Item($name)
 if ($existingLogin -eq $NULL)
@@ -83,7 +83,7 @@ EOH
     def add_login_to_db(host, username, database)
       code = <<EOH
 [System.Reflection.Assembly]::LoadWithPartialName('Microsoft.SqlServer.Smo')
-$server = New-Object('Microsoft.SqlServer.Management.Smo.Server') #{host}
+$server = New-Object('Microsoft.SqlServer.Management.Smo.Server') '#{host}'
 $uname = '#{username}'
 $db = $server.Databases.Item('#{database}')
 $login = $server.Logins.Item($uname)
@@ -108,7 +108,7 @@ EOH
     def assign_db_roles(host, username, database, roles)
       code = <<EOH
 [System.Reflection.Assembly]::LoadWithPartialName('Microsoft.SqlServer.Smo')
-$server = New-Object('Microsoft.SqlServer.Management.Smo.Server') #{host}
+$server = New-Object('Microsoft.SqlServer.Management.Smo.Server') '#{host}'
 $uname = '#{username}'
 $db = $server.Databases.Item('#{database}')
 $login = $server.Logins.Item($uname)
@@ -142,7 +142,7 @@ $group = Get-WmiObject -class Win32_Group -computer (Get-WmiObject Win32_Compute
 if($group)
 {
 [System.Reflection.Assembly]::LoadWithPartialName('Microsoft.SqlServer.Smo')
-$server = New-Object('Microsoft.SqlServer.Management.Smo.Server') #{host}
+$server = New-Object('Microsoft.SqlServer.Management.Smo.Server') '#{host}'
 
 $groupname = '#{domainname}\\#{groupname}'
 $existingLogin = $server.Logins.Item($groupname)
@@ -170,7 +170,7 @@ $group = Get-WmiObject -class Win32_Group -computer (Get-WmiObject Win32_Compute
 if($group)
 {
   [System.Reflection.Assembly]::LoadWithPartialName('Microsoft.SqlServer.Smo')
-  $server = New-Object('Microsoft.SqlServer.Management.Smo.Server') #{host}
+  $server = New-Object('Microsoft.SqlServer.Management.Smo.Server') '#{host}'
   $db = $server.Databases.Item('#{database}')
   $login = $server.Logins.Item('#{domainname}\\#{groupname}')
   if ($db -ne $NULL -and $login -ne $NULL)
@@ -198,7 +198,7 @@ $group = Get-WmiObject -class Win32_Group -computer (Get-WmiObject Win32_Compute
 if($group)
 {
   [System.Reflection.Assembly]::LoadWithPartialName('Microsoft.SqlServer.Smo')
-  $server = New-Object('Microsoft.SqlServer.Management.Smo.Server') #{host}
+  $server = New-Object('Microsoft.SqlServer.Management.Smo.Server') '#{host}'
   $db = $server.Databases.Item('#{database}')
   $login = $server.Logins.Item('#{domainname}\\#{groupname}')
   $grp = $db.Users.Item('#{domainname}\\#{groupname}')
