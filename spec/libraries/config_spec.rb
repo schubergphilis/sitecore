@@ -20,8 +20,10 @@
 require 'spec_helper'
 
 describe 'sitecore_config' do
+  include_context 'shared context'
+
   cached(:config_run) do
-    ChefSpec::SoloRunner.converge('configure_cms::default')
+    ChefSpec::SoloRunner.new(platform).converge('configure_cms::default')
   end
 
   let(:configs_path) do

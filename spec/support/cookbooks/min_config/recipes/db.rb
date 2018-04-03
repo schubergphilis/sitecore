@@ -25,7 +25,7 @@ sitecore_db '.' do
     { 'name' => 'Sitecore.Master', 'type' => 'master' },
     { 'name' => 'Sitecore.Web', 'type' => 'web' }
   ]
-  source_directory ::File.join('C:', 'inetpub', 'wwwroot', 'TestSite', 'Databases')
+  source_data_directory ::File.join('C:', 'inetpub', 'wwwroot', 'TestSite', 'Databases')
   username 'sitecore_user'
   password 'foobar123'
 end

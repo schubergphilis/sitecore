@@ -20,7 +20,8 @@
 require 'chefspec'
 require 'chefspec/berkshelf'
 
-ChefSpec::Coverage.start!
-
-RSpec.configure do |config|
+shared_context 'shared context' do
+  let(:platform) do
+    { platform: 'windows', platform_family: 'windows', version: '2012r2' }
+  end
 end
